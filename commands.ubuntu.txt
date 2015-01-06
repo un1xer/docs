@@ -1,0 +1,298 @@
+
+#############################################################
+
+** Test disk I/O Reads ** 
+
+dd if=/dev/sda3 of=/dev/null
+
+
+#############################################################
+
+** SSH port 80  forward through firewall
+
+ssh -L 8098:192.168.11.98:80 -L 8099:192.168.11.99:80 -L 8087:192.168.11.97:80 -L 8096:192. \
+
+168.11.96:80 -L 8095:192.168.11.95:80 jamesb@74.217.79.235
+
+
+#############################################################
+
+** Finad and Delete files older than a min in ubuntu
+
+find ./*.log -type f -mmin +30 -exec rm {} \;
+
+
+** Finad and Delete files older than a days in ubuntu
+
+find ./*.log -type f -mtime +30 -exec rm {} \;
+
+
+#############################################################
+
+** Grep within .gz files without uncompress
+
+zcat /file.gz | grep string
+
+
+#############################################################
+
+** How to use OR operator in Grep with script
+
+timebridgerun " df -kh | grep \"sd\|md\" "
+
+
+#############################################################
+
+** Find and Delete files older than N days...
+
+find . -name '*.log' -ctime +90 -exec rm -f {} \;
+
+
+#############################################################
+
+** Count numbers in a column
+
+(cat a | tr "\012" "+" ; echo "0") |bc
+
+
+#############################################################
+
+** Identify Total Real Memory and breakdown
+
+vmstat -s -S M | egrep -ie 'memory|swap'
+
+
+#############################################################
+
+** Grep for multiple strings
+
+run_remote.sh "df -kh | grep '^/dev/sd \|^/dev/md'"`
+
+OR
+
+cat /proc/cpuinfo | grep '^proc\|^model name'
+
+
+#############################################################
+
+Test VAS server with curl
+
+curl localhost:8080/root
+
+curl localhost:8080/business (= 404, which is correct)
+
+curl localhost:8080/business/Ross.Neil.D.DDS.A.  \
+
+Professional.Corporation.650-948-3994
+
+
+#############################################################
+
+Find  process with string and delete using PID
+
+ps aux | awk '/java/ {print "sleep 10; kill "$2}' | bash
+
+
+#############################################################
+
+** Find IP address in directory and files...
+
+find /home/musubi/musubi-t20121220/ -exec grep  \
+
+'[0-9][0-9]*[.][0-9][0-9]*[.][0-9][0-9]*[.][0-9][0-9]*' {} \;
+
+
+#############################################################
+
+** Find out who and what cronjobs are running`:wq!:wq
+
+
+for user in $(cut -f1 -d: /etc/passwd); do crontab -u $user -l; done
+
+
+for user in $(cut -f1 -d: /etc/passwd); do echo $user; crontab -u $user -l; done
+
+
+#############################################################
+
+** To run this report for all logfiles only a slight change is needed:
+
+
+zgrep -h "Ban " /var/log/fail2ban.log* | awk '{print $NF}' | sort | uniq -c
+
+
+#############################################################
+
+** or, even better, we can truncate the IP addresses to identify  \ 
+
+the most problematic subnets:
+
+
+zgrep -h "Ban " /var/log/fail2ban.log* | awk '{print $NF}' | awk   \
+
+-F\. '{print $1"."$2"."}' | sort | uniq -c  | sort -n | tail
+
+
+#############################################################
+
+** Reading TCPDUMP binary files
+
+tcpdump -r <filename>
+
+
+^#
+
+** JUMP to blogline andtimebridge
+
+through caspian
+
+
+#############################################################
+
+** Howto setuid: compile a C program, then chmod 4755 program
+
+** !/bin/bash
+
+
+#############################################################
+
+eval $(ssh-agent)
+
+ssh-add
+
+
+#############################################################
+
+** Get a list of not installed packages
+
+aptitude -F "%p" search "?not(?installed)"
+
+
+#############################################################
+
+** List files and folders in package
+
+dpkg -L <packagename>
+
+
+#############################################################
+
+** Show dell serial number
+
+dmidecode -s system-serial-number
+
+
+#############################################################
+
+** Determine Ubuntu Release:
+
+lsb_release -a
+
+
+#############################################################
+
+** To get around the following error...
+
+sudo: no tty present and no askpass program specified
+
+** use this...
+
+ssh -t mc-cache-1 "sudo du -sh /var/log/" ###NOTICE THE -t###
+
+
+#############################################################
+
+** fast file copy
+
+dd if=/dev/sda | ssh username@servername.net "dd of=/dev/sdb"
+
+
+#############################################################
+
+** network test
+
+CLIENT: jamesb@mc-fe-2:~$ dd if=/dev/zero bs=1M count=100 | nc mc-vas-16 1234
+
+SERVER: jamesb@mc-vas-16:~$ nc -l -p 1234 > /dev/null
+
+
+#############################################################
+
+** list hardware specs
+
+sudo lshw -C disk
+
+
+#############################################################
+
+** One Liner Conditional if/than/else statement
+
+if [ -f /bin/lsb_release ]; then echo "Exists"; else echo "NO Exists"; fi
+
+
+#############################################################
+
+** Hardware DMBIOS info
+
+dmidecode
+
+
+#############################################################
+
+** create large empty file
+
+dd if=/dev/zero of=file_1GB bs=1024 count=1000
+
+
+#############################################################
+
+** SSH based on file size only
+
+rsync -av --size-only /home/musubi/ musubi@mc-vas-24:/home/musubi/
+
+
+#############################################################
+
+** List installed packages
+
+dpkg --get-selections
+
+
+#############################################################
+
+** SERACH AVAILABLE PACKAGES
+
+apt-cache search all
+
+
+#############################################################
+
+** REVERSE SSH TUNNELING
+
+
+** Have you ever wanted to ssh to your Linux box that sits behind NAT? Now you can with
+
+** reverse SSH tunneling. This document will show you step by step how to set up reverse
+
+** SSH tunneling. The reverse SSH tunneling should work fine with Unix like systems.
+
+
+** Let's assume that Destination's IP is 192.168.20.55 (Linux box that you want to access).
+
+** You want to access from Linux client with IP 138.47.99.99.
+
+Destination (192.168.20.55) <- |NAT| <- Source (138.47.99.99)
+
+
+** SSH from the destination to the source (with public ip) using command below:
+
+ssh -R 19999:localhost:22 sourceuser@138.47.99.99
+
+
+** port 19999 can be any unused port.
+
+** Now you can SSH from source to destination through SSH tuneling:
+
+ssh localhost -p 19999
+
+

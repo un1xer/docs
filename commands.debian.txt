@@ -1,0 +1,15 @@
+invoke-rc.d networking stop
+
+/usr/sbin/haproxy -D -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid
+
+sh -xv /etc/init.d/haproxy start
+
+egrep '-network|Physical id|logical' /root/lshw.out > /root/network_interface_mapping
+
+ip link set dev eth1 up
+
+lshw -class network > /root/lshw.out; egrep '-network|Physical id|logical' /root/lshw.out > /root/network_interface_mapping; cat /root/network_interface_mapping
+
+tcpdump -nn -v -i bond0 -s 1500 -c 1 'ether[20:2]==0x2000'
+
+
