@@ -1,0 +1,78 @@
+auto lo
+iface lo inet loopback
+
+auto bond0
+	iface bond0 inet static
+        address  10.101.1.5
+	netmask 255.255.0.0
+	gateway 10.101.0.2
+	network 10.101.0.0
+	broadcast 10.101.1.255
+        bond-mode 802.3ad
+        bond-miimon 100
+        bond-downdelay 200
+        bond-updelay 200
+        bond-lacp-rate 1
+	post-up ifenslave bond0 eth4 eth5
+	pre-down ifenslave -d bond0 eth4 eth5
+	dns-nameservers 8.8.8.8
+
+auto bond0.1
+        iface bond0.1 inet static
+        address  172.16.10.5
+        netmask 255.255.254.0
+        gateway 10.101.0.2
+	network  10.101.0.0
+	broadcast 10.101.1.255
+        bond-mode 802.3ad
+        bond-miimon 100
+        bond-downdelay 200
+        bond-updelay 200
+        bond-lacp-rate 1
+	post-up ifenslave bond0.1 eth4 eth5
+	pre-down ifenslave -d bond0.1 eth4 eth5
+        dns-nameservers 8.8.8.8
+
+auto bond0.2
+        iface bond0.2 inet static
+        address  38.126.114.25
+        netmask 255.255.255.128
+        gateway 38.126.114.1
+ 	network 10.101.0.0
+	broadcast 10.101.1.255 
+	bond-mode 802.3ad
+        bond-miimon 100
+        bond-downdelay 200
+        bond-updelay 200
+        bond-lacp-rate 1
+	post-up ifenslave bond0.2 eth4 eth5
+	pre-down ifenslave -d bond0.2 eth4 eth5
+        dns-nameservers 8.8.8.8
+
+auto vlan101
+iface vlan101 inet static
+	address 10.101.1.5
+	netmask 255.255.0.0
+	broadcast 10.101.1.255
+	vlan-raw-device bond0
+	gateway 10.101.0.2
+	dns-nameserver 8.8.8.8
+
+auto vlan172
+iface vlan172 inet static
+        address 172.16.10.5
+        netmask 255.255.0.0
+        broadcast 172.16.10.255
+        vlan-raw-device bond0.1
+        gateway 10.101.0.2
+        dns-nameserver 8.8.8.8
+
+auto vlan501
+iface vlan501 inet static
+        address 38.126.114.25
+        netmask 255.255.255.128
+        broadcast 38.126.114.255
+        vlan-raw-device bond0.2
+        gateway 38.126.114.1
+        dns-nameserver 8.8.8.8
+
