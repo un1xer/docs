@@ -1,0 +1,28 @@
+127.0.0.1       localhost
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+192.168.153.16  host01
+192.168.153.27  host02
+192.168.153.17  host03
+192.168.153.15  host04
+192.168.153.18  host05
+192.168.153.19  host06
+192.168.153.20  host07
+192.168.153.21  host08
+192.168.153.22  host09
+192.168.153.23  host10
+192.168.153.24  host11
+192.168.153.13  host12
+192.168.153.28  host14
+192.168.153.29  host15
+192.168.153.30  host16
+192.168.153.31  host17
+192.168.153.32  host18
+192.168.153.33  host19
+192.168.153.35  host20
+192.168.153.34  host21
+

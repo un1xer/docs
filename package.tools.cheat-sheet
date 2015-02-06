@@ -1,0 +1,38 @@
+List all packages installed
+dpkg-query -l
+
+List packages using a search pattern
+It is possible to add a search pattern to list packages:
+dpkg-query -l 'foo*'
+
+Show status of all packages on the system
+To check the status of all packages on your system:
+pkg -l | more
+###This will show all packages (1 line each) that are in various stages of install (this includes packages that were removed but not purged). To show only the installed:
+dpkg -l | grep '^i'  ...to filter through grep to get results for "i"
+
+###You can also use:
+apt-cache pkgnames
+
+###You can if you are using Debian Linux use dpkg command to list installed software:
+dpkg --get-selections
+
+###And store the list installed software to a file called /backup/installed-software.log
+dpkg --get-selections > /backup/installed-software.log
+
+###You can also find package information in the next directories (you can use mc or other FileManager to browse them):
+
+/var/lib/apt/lists/*
+/var/lib/dpkg/available: list of available packages.
+/var/lib/dpkg/status :statuses of available packages. This file contains information about whether a package is marked for removing or not, whether it is installed or not, etc. A package marked reinst-required is broken and requires reinstallation.
+Restore installed software
+
+###After re-installing base system you can immediately re-install all software.
+###All you have to do is type following two commands:
+dpkg --set-selections < /backup/installed-software.log
+
+###Now your list is imported use apt-get, Synaptic or other PackageManagement tools. To install the package:
+apt-get dselect-upgrade
+
+###All this with a single command:
+aptitude install $(cat /backup/installed-software.log | awk '{print $1}')

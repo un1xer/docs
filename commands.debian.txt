@@ -12,4 +12,10 @@ lshw -class network > /root/lshw.out; egrep '-network|Physical id|logical' /root
 
 tcpdump -nn -v -i bond0 -s 1500 -c 1 'ether[20:2]==0x2000'
 
+ssh-copy-id -i .ssh/id_rsa.pub remoteuser@remote.host
 
+ifconfig | awk '/192.168.153/ {print $2}' | cut -f 2 -d ':'
+
+IPADD=$(ssh $i ifconfig | awk '/192.168.153/ {print $2}' | cut -f 2 -d ':');
+
+shutdown

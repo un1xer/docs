@@ -1,0 +1,205 @@
+GIT CHEAT SHEET
+
+V 1.1.1
+
+Git is the open source distributed version control system that facilitates GitHub activities on your laptop or
+desktop. This cheat sheet summarizes commonly used Git command line instructions for quick reference.
+
+INSTALL GIT
+
+GitHub provides desktop clients that include a graphical user
+interface for the most common repository actions and an automatically updating command line edition of Git for advanced scenarios.
+GitHub for Windows
+https://windows.github.com
+GitHub for Mac
+https://mac.github.com
+
+MAKE CHANGES
+
+Review edits and craft a commit transaction
+$ git status
+
+Lists all new or modiﬁed ﬁles to be committed
+$ git diff
+
+Shows ﬁle diﬀerences not yet staged
+$ git add [file]
+
+Git distributions for Linux and POSIX systems are available on the
+oﬃcial Git SCM web site.
+
+Snapshots the ﬁle in preparation for versioning
+
+Git for All Platforms
+http://git-scm.com
+
+Shows ﬁle diﬀerences between staging and the last ﬁle version
+
+$ git diff --staged
+
+$ git reset [file]
+
+Unstages the ﬁle, but preserve its contents
+
+CONFIGURE TOOLING
+
+Conﬁgure user information for all local repositories
+
+$ git commit -m "[descriptive message]"
+
+Records ﬁle snapshots permanently in version history
+
+$ git config --global user.name "[name]"
+
+Sets the name you want attached to your commit transactions
+$ git config --global user.email "[email address]"
+
+GROUP CHANGES
+
+Name a series of commits and combine completed eﬀorts
+
+Sets the email you want attached to your commit transactions
+$ git config --global color.ui auto
+
+Enables helpful colorization of command line output
+
+$ git branch
+
+Lists all local branches in the current repository
+$ git branch [branch-name]
+
+Creates a new branch
+
+CREATE REPOSITORIES
+
+Start a new repository or obtain one from an existing URL
+
+$ git checkout [branch-name]
+
+Switches to the speciﬁed branch and updates the working directory
+
+$ git init [project-name]
+
+$ git merge [branch]
+
+Creates a new local repository with the speciﬁed name
+
+Combines the speciﬁed branch’s history into the current branch
+
+$ git clone [url]
+
+$ git branch -d [branch-name]
+
+Downloads a project and its entire version history
+
+Deletes the speciﬁed branch
+
+GIT CHEAT SHEET
+
+REFACTOR FILENAMES
+
+Relocate and remove versioned ﬁles
+
+REVIEW HISTORY
+
+Browse and inspect the evolution of project ﬁles
+
+$ git rm [file]
+
+$ git log
+
+Deletes the ﬁle from the working directory and stages the deletion
+
+Lists version history for the current branch
+
+$ git rm --cached [file]
+
+$ git log --follow [file]
+
+Removes the ﬁle from version control but preserves the ﬁle locally
+
+Lists version history for a ﬁle, including renames
+
+$ git mv [file-original] [file-renamed]
+
+$ git diff [first-branch]...[second-branch]
+
+Changes the ﬁle name and prepares it for commit
+
+Shows content diﬀerences between two branches
+$ git show [commit]
+
+SUPPRESS TRACKING
+
+Outputs metadata and content changes of the speciﬁed commit
+
+Exclude temporary ﬁles and paths
+*.log
+build/
+temp-*
+
+A text ﬁle named .gitignore suppresses accidental versioning of
+ﬁles and paths matching the speciﬁed patterns
+
+REDO COMMITS
+
+Erase mistakes and craft replacement history
+$ git reset [commit]
+
+Undoes all commits after [commit], preserving changes locally
+
+$ git ls-files --other --ignored --exclude-standard
+
+$ git reset --hard [commit]
+
+Lists all ignored ﬁles in this project
+
+Discards all history and changes back to the speciﬁed commit
+
+SAVE FRAGMENTS
+
+Shelve and restore incomplete changes
+
+SYNCHRONIZE CHANGES
+
+Register a repository bookmark and exchange version history
+
+$ git stash
+
+$ git fetch [bookmark]
+
+Temporarily stores all modiﬁed tracked ﬁles
+
+Downloads all history from the repository bookmark
+
+$ git stash pop
+
+$ git merge [bookmark]/[branch]
+
+Restores the most recently stashed ﬁles
+
+Combines bookmark’s branch into current local branch
+
+$ git stash list
+
+$ git push [alias] [branch]
+
+Lists all stashed changesets
+
+Uploads all local branch commits to GitHub
+
+$ git stash drop
+
+$ git pull
+
+Discards the most recently stashed changeset
+
+Downloads bookmark history and incorporates changes
+
+Learn more about using GitHub and Git. Email the Training Team or visit
+our web site for learning event schedules and private class availability.
+
+training@github.com
+training.github.com
+
+
