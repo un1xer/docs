@@ -19,3 +19,15 @@ ifconfig | awk '/192.168.153/ {print $2}' | cut -f 2 -d ':'
 IPADD=$(ssh $i ifconfig | awk '/192.168.153/ {print $2}' | cut -f 2 -d ':');
 
 shutdown
+
+puppet cert list | awk '/host*/ {print $1}' | sed "s/\"/ /g"
+Does remote file exist...
+if ssh host04 test -e ~/.ssh/authorized_keys2; then echo "FILE EXISTS"; else echo "FILE DOES NOT EXIST"; fi
+
+ssh-copy-id -i .ssh/id_rsa.pub remoteuser@remote.host
+
+ ifconfig | awk '/192.168.153/ {print $2}' | cut -f 2 -d ':'
+
+ # GET IP ADDRESS OF FOREIGN HOST...
+         IPADD=$(ssh $i ifconfig | awk '/192.168.153/ {print $2}' | cut -f 2 -d ':');
+
